@@ -25,7 +25,7 @@ def start_fireplace():
         return
     # start video
     print('Turning on fireplace')
-    p = subprocess.Popen(["omxplayer","-o","local","/home/pi/videoloop/fireplace.mp4"])
+    p = subprocess.Popen(["omxplayer","-o","local","--aspect-mode","fill","/home/pi/videoloop/fireplace.mp4"])
     print('Fireplace is on')
 
 def stop_fireplace():
