@@ -1,6 +1,7 @@
 import os
 import sys
 import subprocess
+import psutil
 from time import sleep
 from Adafruit_IO import MQTTClient
 
@@ -18,7 +19,11 @@ def disconnected(client):
     # mqtt_run()
 
 def start_fireplace():
-    # TODO: should test that the video is not already running
+    # test that the video is not already running
+    if "omxplayer" in (p.name() for p in psutil.process_iter()):
+        print('Fireplace already on')
+        return
+    # start video
     print('Turning on fireplace')
     p = subprocess.Popen(["omxplayer","-o","local","/home/pi/videoloop/fireplace.mp4"])
     print('Fireplace is on')
